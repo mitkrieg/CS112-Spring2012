@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+
+#raw_input grabs string
+n=raw_input("Enter a number: ")
+m=raw_input("Enter a another number: ")
+
+n=int(n)
+m=float(m)
+
+print n,"+",m,"=",n+m
+print n,"-",m,"=",n-m
+print n,"*",m,"=",n*m
+print n,"/",m,"=",n/m
