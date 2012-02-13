@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 from random import randint
 s=1
-t=int(raw_input())
+t=int(raw_input("Enter Number: "))
 rr=[]
-for _ in range(t):
+for i in range(t):
     rr.append(randint(0,20))
 print rr
-while s:
+while s == 1:
     s=0
     for var in range(1,t):
         if rr[var-1]>rr[var]:

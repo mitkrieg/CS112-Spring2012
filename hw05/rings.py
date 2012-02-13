@@ -30,7 +30,21 @@ screen.fill(WHITE)
 ##  and arc.  Also, the width
 ##  parameter
 #################################
+pi=3.1415926
 
+pygame.draw.arc(screen, BLUE, (10,20,200,200),-1.135,4.8, THICKNESS)
+#pygame.draw.cricle(screen, BLUE,(110,120),100, THICKNESS)
+pygame.draw.arc(screen, YELLOW,(120,120,200,200),pi/10,pi/2+.09, THICKNESS)
+pygame.draw.arc(screen, YELLOW,(120,120,200,200),pi/2+.45,pi*2-.06, THICKNESS)
+#pygame.draw.circle(screen, YELLOW, (220,220), 100, THICKNESS)
+pygame.draw.arc(screen,BLACK,(230,20,200,200),-pi/2+.4,pi,THICKNESS)
+pygame.draw.arc(screen,BLACK,(230,20,200,200),pi+.35,3*pi/2+.1, THICKNESS)
+#pygame.draw.circle(screen, BLACK, (330,120), 100, THICKNESS)
+pygame.draw.arc(screen, GREEN,(340,120,200,200),pi/10,pi/2+.09, THICKNESS)
+pygame.draw.arc(screen, GREEN,(340,120,200,200),pi/2+.45,pi*2-.06, THICKNESS)
+pygame.draw.arc(screen, RED,(450,20,200,200),-pi+.4,pi, THICKNESS)
+#pygame.draw.circle(screen, RED, (550,120), 100, THICKNESS)
+#pygame.draw.circle(screen, GREEN, (440,220), 100, THICKNESS)
 
 ## Loop
 clock = pygame.time.Clock()
