@@ -9,7 +9,10 @@ import math
 #      >>> distance((0,0), (3,4))
 #      5
 
-# def distance(a, b):
+def distance(a, b):
+    x1,y1 = a
+    x2,y2 = b
+    return math.sqrt((x1-x2)**2+(y1-y2)**2)
 
 
 # ADVANCED
@@ -25,4 +28,6 @@ import math
 #     >>> normalize([1,1,1,1])
 #     [0.25, 0.25, 0.25, 0.25]
 
-# def normalize(vec):
+
+def normalize(vec):
+    

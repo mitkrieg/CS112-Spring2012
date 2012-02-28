@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import string
+
 ###################### 
 #  Helper Functions
 ######################
@@ -7,8 +9,11 @@
 def splitparts(s):
     "split_ints takes a string and returns all chunks.  Chunks are any space separated or comma separated values"
     
+    return s.split(" ")
+    
 def a2idx(c):
     "converts a letter to it's index value"
+    return ord(c.lower())-65
 
 def idx2a(i):
     "converts an index to it's letter value"
@@ -27,6 +32,7 @@ def parse_stones(s):
     >>> parse_stones("0 200 4 5")
     [99, 4 5]
     """
+    return 
 
 # moves are [pile, amount] => [int, int]
 
