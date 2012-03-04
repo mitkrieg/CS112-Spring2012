@@ -13,11 +13,16 @@ manipulate python dictionaries.
 #      is in data.
 #          >>> freq([ 1, 2, 2, 2, 2, 3, 4, 5, 1, 4, 1, 9, 10 ])
 #          { 1: 3, 2: 4, 3: 1, 4: 1, 5: 1, 9: 1, 10: 1}
+#           Index is # value is Frequency
 
 def freq(data):
     "calculate the frequency for each value in data"
-
-
+    counts = {}
+    for value in data:
+        if not value in counts:
+            counts[value] = 0
+        counts [value] += 1
+    return counts
 
 # 2. Movie Reviews
 #      Write two functions to help with scoring a movie.
@@ -38,14 +43,26 @@ def freq(data):
 #      None
 
 movies = {}
-
 def score(title, value):
     "register the score for a given movie out of 5"
+    if movies.has_key(title) == True:
+        movies[title].append(value)
+    else:
+        movies[title] = [value]
+        
 
 
 def avg_score(title):
     "return the average score for a given movie"
-
+    num = 0
+    if movies.has_key(title):
+        total = float(sum(movies[title]))
+        num = len(movies[title])
+        avg = total/num
+        return avg
+    else:
+        return None
+        
 
 
 # 3. parse_csv (Advanced)
@@ -66,7 +83,3 @@ def avg_score(title):
 #           [ { "name": "Foo", "age": "24", "email": "foo@example.com" },
 #             { "name": "Bar", "age": "22", "email": "bar@example.com" },
 #             { "name": "Baz", "age": "20", "email": "baz@example.com" } ]            
-
-def parse_csv(data):
-    "parses a csv file into a list of dictionaries"
-
