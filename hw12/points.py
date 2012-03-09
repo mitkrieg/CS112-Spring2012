@@ -40,8 +40,8 @@ class Point(object):
         self.y = y 
     
     def distance(self,other):
-        self.distance = math.sqrt((self.x-other.x)**2+(self.y-other.y)**2)
-        return self.distance
+        distance = math.sqrt((self.x-other.x)**2+(self.y-other.y)**2)
+        return distance
     
     def move(self,x,y):
         self.x = x
@@ -51,9 +51,6 @@ class Point(object):
         self.x += x
         self.y += y
 
-    def slope(self,other):
-        self.slope = (other.y-self.y)/(other.x-self.x)
-        return self.slope
 
     def __str__(self):
         return "(%s,%s)" %(self.x,self.y)
