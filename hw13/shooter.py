@@ -1,74 +1,19 @@
 #!/usr/bin/env python
-#
-#
-#
-# A shooter game
-#
-#
-#
-#
-#
-#
-#
-
-import math
-
-import random
-from random import randrange
 
 import pygame
-from pygame import Rect, Surface
 from pygame.locals import *
-from pygame.sprite import Sprite, Group
 
-#CONSTANTS
-BLACK = 0,0,0
-RED = 255,0,0
-GREEN = 0,255,0
-BLUE = 0,0,255
-WHITE = 255,255,255
-PURPLE = 255,0,255
+import graphicshoot
+from graphicshoot import draw_player,draw_enemy
 
-class Enemy(Sprite):
-    
-    def __init__(self, x, y, vx, vy, bounds, color):
-        Sprite.__init__(self)
+import explosionshoot
+from explosionshoot import ExplosionGroup,Explosion
 
-        self.vx = vx
-        self.vy = vy
-        self.bounds = bounds
-        self.color = color
-        
-        self.rect = Rect(x, y, self.width, self.height)
-        self.image = Surface(self.rect.size)
-        self.draw_image()
+import enemyshoot
+from enemyshoot import EnemyGroup,Enemy,EnemySpawner
 
-    def kill(self):
-        pass
-
-    def alive(self):
-        pass
-
-class Player(Sprite):
-    def __init__(self, x, y, vx, vy, bounds, color):
-        Sprite.__init__(self)
-        
-        self.vx = vx
-        self.vy = vy
-        self.bounds = bounds
-        self.color = color
-        
-        self.rect = Rect(x, y, self.width, self.height)
-        self.image = Surface(self.rect.size)
-        self.draw_image()
-
-    def kill(self):
-        pass
-    
-    def alive(self):
-        pass
-
-
+import playershoot
+from playershoot import Player
 
 class Application(object):
     title = None
@@ -140,6 +85,7 @@ class Application(object):
             self.update()
             self.draw(self.screen)
             pygame.display.flip()
+                
     
     
     def run(self):
@@ -162,12 +108,54 @@ class Application(object):
     def on_start(self): pass
     def on_quit(self): pass
 
-
 class Game(Application):
     title = "Shoot Em'"
     screen_size = 800, 600
+    moving = False
+    
+    def __init__(self):
+        Application.__init__(self)
+        
+        self.player = Player(self.screen,300,550)
+        self.enemy = Enemy(self.screen,300,150,20,20)
+        self.bounds = self.screen.get_rect()
+        self.enemyGroup = EnemyGroup()
+        self.xplos = ExplosionGroup()
+        Explosion.group = self.xplos
+        self.direction = None
+    
+        self.spawners = [EnemySpawner(1000, self.enemyGroup, self.bounds)]
+        
+            
+    def handle_event(self, event):
+        if event.type == KEYDOWN and event.key == K_LEFT:
+            self.moving = True
+            self.direction = "l"
+        elif event.type == KEYUP and event.key == K_LEFT:
+            self.moving = False
+        elif event.type == KEYDOWN and event.key == K_RIGHT:
+            self.moving = True
+            self.direction = "r"
+        elif event.type == KEYUP and event.key == K_RIGHT:
+            self.moving = False
 
+    
+    def update(self):
+        dt = min(200, self.clock.get_time())
+        self.enemy.update(dt)
+        if self.moving:
+            self.player.update(self.direction)
+    
+                
+        for spawner in self.spawners:
+            spawner.update(dt)
+    
+    def draw(self, screen):
+        screen.fill((0,0,0))
+        self.player.draw_image(screen)
+        self.enemy.draw_image(screen)
 
 if __name__ == "__main__":
     Game().run()
     print "End"
+

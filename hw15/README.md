@@ -31,27 +31,38 @@ Before the end of break, as producers we will "score" the difficulty of each. Th
 
 ----
 
-## Prototype Game
-A simple point-and-click adventure game about perspective of an underachieving game programmer walking the line between pink slip and productivity.
+## Hide & Seek
+A game where the player walks around a town looking for their friend (computer) who is hiding from them. The player must get clues from the towns people as to where the computer is hiding.
 
-### Genre
-In the style of the old lucasarts adventure games like "Monkey Island".
+## Genre
+RPG-like, overhead style like pokemon or the early zelda games. 
 
-### Technical Hurdles
- * bottom menu
- * inventory
- * moving character where clicked
- * unique per item behaviors
+## Technical Hurdles
+* Making the town
+* Randomizing computer hiding spots and corresponding townspeople clues
+* making towns people
+* Difficulty level
 
+## Picture Puzzel
+A jigsaw puzzle game that uses a picture imported by the user as the puzzle
 
-## Block Dude Adventures
-Based on the classic TI83+ game "Blockdude" with metroid-vania/open world level design and multiple block types.
+## Genre
+Puzzel Game
 
-### Genre
-Tiled puzzle sidescroller
+## Technical Hurdles
+*Importing pictures
+*scrambling puzzel
+*recognizing when two puzzle pieces are correct
+*Picture size issues
 
-### Technical Hurdles
- * multiple block types
- * saved state
- * level loading
- * player equipment
+## Grand Mountain
+Player climbs grand mountain to seek treasure by finding items around the mountain based on a riddle or clues given by mountain elves. Once the player finds the tree items they can climb to the next level of mountain
+
+## Genre
+A side scrolling game similar to Treasure Mountain http://en.wikipedia.org/wiki/Treasure_Mountain!
+
+## Technical Hurdles
+* Making mountain
+* creating riddles/clues
+* making objects/elves
+* making game different every time
