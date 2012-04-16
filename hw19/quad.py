@@ -103,8 +103,11 @@ class QuadTreeNode(object):
 
     def __init__(self, rect, depth = 0):
         self.rect = rect
+        self.rectlist = []
+        self.rectlist.append(self.rect)
         self.data = None
         self.is_split = False
+        self.pointlist=[]
 
         self.ne = None
         self.nw = None
@@ -116,12 +119,16 @@ class QuadTreeNode(object):
     def add_point(self, point):
         # if we don't have data, just add it
         if self.data is None and not self.is_split:
+            self.pointlist.append(point)
             self.data = point
             return
         elif self.depth == MAX_DEPTH:
+            self.pointlist.append(point)
             self.data = point
             return
-
+        else:
+            self.pointlist.append(point)
+            return 
         # if already haven't split, do that now
         if not self.is_split:
             prev_point = self.data
@@ -136,7 +143,11 @@ class QuadTreeNode(object):
             self.ne = QuadTreeNode( Rect(r.centerx, r.top, ceil(w), floor(h) ), d ) 
             self.sw = QuadTreeNode( Rect(r.left, r.centery, floor(w), ceil(h) ), d )
             self.se = QuadTreeNode( Rect(r.centerx, r.centery, ceil(w), ceil(h) ), d )
-
+            
+            self.rectlist.append(self.nw.rect)
+            self.rectlist.append(self.ne.rect)
+            self.rectlist.append(self.sw.rect)
+            self.rectlist.append(self.se.rect)
             # re add the point
             self.add_point(prev_point)
 
@@ -150,12 +161,15 @@ class QuadTreeNode(object):
         else:
             self.se.add_point(point)
 
-    # def get_points(self):
+
+        
+
+    def get_points(self):
+        return self.pointlist
     
 
-    # def get_rects(node, rects=None):
-    #   if rects is None:
-    #       rects = []
+    def get_rects(self, rects=None):
+        return self.rectlist
 
 
     # Advanced

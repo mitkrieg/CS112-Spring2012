@@ -39,7 +39,7 @@ class Enemy(object):
     explosion_type = EnemyExplosion
     explosion_radius = 18
     
-    def __init__(self,surf,x,y,vx,vy):
+    def __init__(self,surf,x,y,vx,vy,color):
         self.x = x
         self.y = y
         self.vx = vx
@@ -88,7 +88,8 @@ class Enemy(object):
 
 class EnemySpawner(object):
     
-    def __init__(self, duration, group, bounds):
+    def __init__(self, surf,duration, group, bounds):
+        self.surf = surf
         self.group = group
         self.bounds = bounds
         self.duration = duration
@@ -100,7 +101,7 @@ class EnemySpawner(object):
         vx, vy = self.rand_vel()
         color = self.rand_color()
         
-        ship = self.Enemy(x, y, vx, vy, self.bounds, color)
+        ship = Enemy(self.surf,x, y, vx, vy, color)
         self.group.add(ship)
     
     def update(self, dt):

@@ -117,14 +117,14 @@ class Game(Application):
         Application.__init__(self)
         
         self.player = Player(self.screen,300,550)
-        self.enemy = Enemy(self.screen,300,150,20,20)
+        self.enemy = Enemy(self.screen,300,150,20,20,(255,0,0))
         self.bounds = self.screen.get_rect()
         self.enemyGroup = EnemyGroup()
         self.xplos = ExplosionGroup()
         Explosion.group = self.xplos
         self.direction = None
     
-        self.spawners = [EnemySpawner(1000, self.enemyGroup, self.bounds)]
+        self.spawners = [EnemySpawner(self.screen, 1000, self.enemyGroup, self.bounds)]
         
             
     def handle_event(self, event):
@@ -145,8 +145,6 @@ class Game(Application):
         self.enemy.update(dt)
         if self.moving:
             self.player.update(self.direction)
-    
-                
         for spawner in self.spawners:
             spawner.update(dt)
     
